@@ -1,0 +1,123 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Import Attendees - OCMS{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="row justify-content-center">
+    <div class="col-xl-9 col-lg-10">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <div>
+                <h2 class="fw-bold mb-1">📊 Import Participants</h2>
+                <p class="text-muted mb-0">Bulk upload participant lists using Excel (.xlsx, .xls) or CSV (.csv) files</p>
+            </div>
+            <div class="d-flex gap-2">
+                <a href="{% url 'download_sample_template' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-download"></i> Download Sample CSV Template
+                </a>
+                <a href="{% url 'participant_list' %}" class="btn btn-secondary">
+                    <i class="bi bi-arrow-left"></i> Participants
+                </a>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <!-- Left: Form -->
+            <div class="col-lg-7">
+                <div class="ocms-form-card">
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <div class="section-title">
+                            <i class="bi bi-file-earmark-arrow-up me-1"></i> Upload File
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Target Event <span class="text-danger">*</span></label>
+                            {{ form.event }}
+                            {% if form.event.errors %}
+                            <div class="text-danger small mt-1">{{ form.event.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Select Excel or CSV File <span class="text-danger">*</span></label>
+                            {{ form.file }}
+                            {% if form.file.errors %}
+                            <div class="text-danger small mt-1">{{ form.file.errors }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="d-flex gap-2 justify-content-end mt-4">
+                            <a href="{% url 'participant_list' %}" class="btn btn-secondary px-4">
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary px-4">
+                                <i class="bi bi-upload"></i> Start Ingestion
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right: Instructions & Format Reference -->
+            <div class="col-lg-5">
+                <div class="dashboard-card p-4 mb-4">
+                    <h5 class="fw-bold mb-3"><i class="bi bi-info-circle text-primary me-2"></i>Expected Columns</h5>
+                    <p class="text-muted small">Your spreadsheet should include headers with the following column names:</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-sm table-bordered small">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Column Name</th>
+                                    <th>Status</th>
+                                    <th>Example</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><code>full_name</code></td>
+                                    <td><span class="badge badge-danger">Required</span></td>
+                                    <td>John Doe</td>
+                                </tr>
+                                <tr>
+                                    <td><code>email</code></td>
+                                    <td><span class="badge badge-danger">Required</span></td>
+                                    <td>john@example.com</td>
+                                </tr>
+                                <tr>
+                                    <td><code>phone</code></td>
+                                    <td><span class="badge badge-secondary">Optional</span></td>
+                                    <td>9876543210</td>
+                                </tr>
+                                <tr>
+                                    <td><code>college</code></td>
+                                    <td><span class="badge badge-secondary">Optional</span></td>
+                                    <td>Oxford College</td>
+                                </tr>
+                                <tr>
+                                    <td><code>department</code></td>
+                                    <td><span class="badge badge-secondary">Optional</span></td>
+                                    <td>Computer Science</td>
+                                </tr>
+                                <tr>
+                                    <td><code>usn</code></td>
+                                    <td><span class="badge badge-secondary">Optional</span></td>
+                                    <td>1OX20CS001</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="alert alert-info py-2 px-3 small mt-3 mb-0">
+                        <i class="bi bi-lightbulb me-1"></i> Flexible column matching is enabled: headers like "Full Name", "Participant Name", "Email Address", "Roll No" are automatically recognized.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

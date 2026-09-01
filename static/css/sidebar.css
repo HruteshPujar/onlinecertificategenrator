@@ -1,0 +1,382 @@
+
+/* ==========================================
+   OCMS SIDEBAR OVERRIDE
+========================================== */
+
+.ocms-sidebar .sidebar {
+
+    position: relative !important;
+
+    top: auto !important;
+
+    left: auto !important;
+
+    right: auto !important;
+
+    bottom: auto !important;
+
+    width: 270px !important;
+
+    min-height: calc(100vh - 40px) !important;
+
+    height: auto !important;
+
+    margin: 0 !important;
+
+    z-index: 20 !important;
+
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.ocms-sidebar-wrapper {
+
+    padding: 20px;
+
+    min-height: 100vh;
+
+}
+
+
+/* ==========================================
+   SIDEBAR BOX
+========================================== */
+
+.ocms-sidebar-wrapper .sidebar {
+
+    width: 100%;
+
+    min-height: calc(100vh - 40px);
+
+    padding: 25px;
+
+    background: rgba(255, 255, 255, 0.75);
+
+    backdrop-filter: blur(18px);
+
+    -webkit-backdrop-filter: blur(18px);
+
+    border-radius: 25px;
+
+    border: 1px solid rgba(255,255,255,.7);
+
+    box-shadow:
+
+        8px 8px 20px rgba(163,177,198,.45),
+
+        -8px -8px 20px rgba(255,255,255,.9);
+
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+.logo h2 {
+
+    color: #6C63FF;
+
+    font-weight: 700;
+
+    font-size: 28px;
+
+}
+
+.logo p {
+
+    color: #7B8794;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+}
+
+
+/* ==========================================
+   MENU
+========================================== */
+
+.sidebar ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+
+}
+
+.sidebar li {
+
+    margin-bottom: 8px;
+
+}
+
+.sidebar a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 15px;
+
+    color: #4A5568;
+
+    text-decoration: none;
+
+    border-radius: 14px;
+
+    transition: .3s;
+
+}
+
+.sidebar a:hover {
+
+    background: #6C63FF;
+
+    color: white;
+
+    transform: translateX(4px);
+
+}
+
+.sidebar a i {
+
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 18px;
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+.sidebar .logout {
+
+    margin-top: 25px;
+
+    color: #FF6B6B;
+
+}
+
+.sidebar .logout:hover {
+
+    background: #FF6B6B;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 991px) {
+
+    .ocms-sidebar-wrapper {
+
+        padding: 15px;
+
+    }
+
+    .ocms-sidebar-wrapper .sidebar {
+
+        min-height: auto;
+
+    }
+
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo {
+
+    text-align: center;
+
+    margin-bottom: 35px;
+
+}
+
+.logo h2 {
+
+    color: #6C63FF;
+
+    font-weight: 700;
+
+    font-size: 28px;
+
+}
+
+.logo p {
+
+    color: #7B8794;
+
+    font-size: 13px;
+
+    margin-top: 5px;
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+.sidebar ul {
+
+    list-style: none;
+
+    padding: 0;
+
+    margin: 0;
+
+}
+
+.sidebar li {
+
+    margin-bottom: 8px;
+
+}
+
+.sidebar a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 13px 15px;
+
+    color: #4A5568;
+
+    text-decoration: none;
+
+    border-radius: 14px;
+
+    transition: all .3s ease;
+
+    font-size: 15px;
+
+}
+
+.sidebar a i {
+
+    font-size: 18px;
+
+    width: 22px;
+
+    text-align: center;
+
+}
+
+.sidebar a:hover {
+
+    background: #6C63FF;
+
+    color: white;
+
+    transform: translateX(5px);
+
+    box-shadow:
+        4px 4px 10px rgba(108,99,255,.25);
+
+}
+
+
+/* ==========================================
+   ACTIVE MENU
+========================================== */
+
+.sidebar a.active {
+
+    background: #6C63FF;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+.sidebar .logout {
+
+    margin-top: 25px;
+
+    color: #FF6B6B;
+
+}
+
+.sidebar .logout:hover {
+
+    background: #FF6B6B;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 992px) {
+
+    .sidebar {
+
+        width: 230px;
+
+        padding: 20px;
+
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+
+        position: relative;
+
+        top: 0;
+
+        width: 100%;
+
+        min-height: auto;
+
+    }
+
+}

@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+
+    font-family: 'Poppins', sans-serif;
+
+    background: #EEF2F9;
+
+    color: #2D3748;
+
+}
+
+
+/* ==========================================
+   MAIN CONTENT
+========================================== */
+
+.ocms-main {
+
+    width: 100%;
+
+    min-width: 0;
+
+    padding: 20px 25px 40px;
+
+}
+
+
+/* ==========================================
+   CONTENT
+========================================== */
+
+.ocms-content {
+
+    width: 100%;
+
+    margin-top: 25px;
+
+}
+
+
+/* Prevent Bootstrap rows from causing
+   horizontal overflow */
+
+.ocms-content .row {
+
+    max-width: 100%;
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 991px) {
+
+    .ocms-main {
+
+        padding: 15px;
+
+    }
+
+}

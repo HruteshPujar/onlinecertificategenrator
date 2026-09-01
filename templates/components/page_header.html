@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <div>
+        <h2 class="fw-bold mb-1" style="color: #2D3748;">{{ title }}</h2>
+        {% if subtitle %}
+        <p class="text-muted mb-0" style="font-size: 14px;">{{ subtitle }}</p>
+        {% endif %}
+    </div>
+
+    <div class="d-flex gap-2 align-items-center flex-wrap">
+        {% if secondary_button_url %}
+        <a href="{{ secondary_button_url }}" class="btn btn-secondary">
+            {% if secondary_button_icon %}<i class="bi {{ secondary_button_icon }}"></i>{% endif %}
+            {{ secondary_button_text }}
+        </a>
+        {% endif %}
+
+        {% if button_url %}
+        <a href="{{ button_url }}" class="btn btn-primary">
+            <i class="bi {{ button_icon|default:'bi-plus-circle' }}"></i>
+            {{ button_text }}
+        </a>
+        {% endif %}
+    </div>
+</div>
+
+{% if show_search %}
+{% include "components/search_bar.html" %}
+{% endif %}

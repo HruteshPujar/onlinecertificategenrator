@@ -1,0 +1,86 @@
+/* ==========================================
+   OCMS BUTTONS
+========================================== */
+
+.btn {
+    border-radius: 12px;
+    padding: 9px 18px;
+    font-weight: 500;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6C63FF, #5A4BFF);
+    color: white;
+    box-shadow: 0 4px 12px rgba(108, 99, 255, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5A4BFF, #4838FF);
+    color: white;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #2ECC71, #27AE60);
+    color: white;
+    box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #27AE60, #219653);
+    color: white;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #FFB547, #F39C12);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 181, 71, 0.3);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #FF6B6B, #EE5253);
+    color: white;
+    box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+.btn-secondary {
+    background: #E2E8F0;
+    color: #4A5568;
+}
+
+.btn-secondary:hover {
+    background: #CBD5E1;
+    color: #2D3748;
+}
+
+.btn-outline-primary {
+    border: 1.5px solid #6C63FF;
+    color: #6C63FF;
+    background: transparent;
+}
+
+.btn-outline-primary:hover {
+    background: #6C63FF;
+    color: white;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12.5px;
+    border-radius: 8px;
+}

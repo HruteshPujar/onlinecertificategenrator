@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Certificate</title>
+
+<style>
+
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:30px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    border-radius:10px;
+    padding:40px;
+    box-shadow:0 0 10px rgba(0,0,0,.2);
+}
+
+h1{
+    color:#0d6efd;
+}
+
+p{
+    font-size:17px;
+    line-height:1.8;
+}
+
+.footer{
+    margin-top:40px;
+    color:gray;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎉 Certificate of Participation</h1>
+
+<p>
+
+Hello <strong>{{ participant.full_name }}</strong>,
+
+</p>
+
+<p>
+
+Congratulations!
+
+</p>
+
+<p>
+
+Thank you for participating in
+
+<strong>
+
+{{ participant.event.title }}
+
+</strong>
+
+</p>
+
+<p>
+
+Your certificate has been attached with this email.
+
+</p>
+
+<p>
+
+We appreciate your participation.
+
+</p>
+
+<div class="footer">
+
+Regards,
+
+<br>
+
+Training Team
+
+</div>
+
+</div>
+
+</body>
+
+</html>

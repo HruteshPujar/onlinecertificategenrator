@@ -1,0 +1,109 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}{{ title|default:"Add Participant" }} - OCMS{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="row justify-content-center">
+    <div class="col-xl-8 col-lg-10">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <div>
+                <h2 class="fw-bold mb-1">👤 {{ title|default:"Add New Participant" }}</h2>
+                <p class="text-muted mb-0">Register attendee for certificate generation and email dispatch</p>
+            </div>
+            <a href="{% url 'participant_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Participants
+            </a>
+        </div>
+
+        <div class="ocms-form-card mb-5">
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- Section 1: Event Selection -->
+                <div class="section-title">
+                    <i class="bi bi-calendar-event me-1"></i> Target Event
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Select Event <span class="text-danger">*</span></label>
+                    {{ form.event }}
+                    {% if form.event.errors %}
+                    <div class="text-danger small mt-1">{{ form.event.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Section 2: Personal Information -->
+                <div class="section-title">
+                    <i class="bi bi-person me-1"></i> Attendee Information
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-12">
+                        <label class="form-label">Full Name <span class="text-danger">*</span></label>
+                        {{ form.full_name }}
+                        <div class="help-text">This name will be printed directly onto the certificate.</div>
+                        {% if form.full_name.errors %}
+                        <div class="text-danger small mt-1">{{ form.full_name.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <div class="text-danger small mt-1">{{ form.email.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Phone Number</label>
+                        {{ form.phone }}
+                        {% if form.phone.errors %}
+                        <div class="text-danger small mt-1">{{ form.phone.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">College / Organization</label>
+                        {{ form.college }}
+                        {% if form.college.errors %}
+                        <div class="text-danger small mt-1">{{ form.college.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Department / Branch</label>
+                        {{ form.department }}
+                        {% if form.department.errors %}
+                        <div class="text-danger small mt-1">{{ form.department.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">USN / Roll Number / Registration ID</label>
+                        {{ form.usn }}
+                        {% if form.usn.errors %}
+                        <div class="text-danger small mt-1">{{ form.usn.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="d-flex gap-2 justify-content-end mt-4">
+                    <a href="{% url 'participant_list' %}" class="btn btn-secondary px-4">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-check-circle"></i> {{ button|default:"Save Participant" }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,51 @@
+/* ==========================================
+   OCMS RESPONSIVE STYLES
+========================================== */
+
+@media (max-width: 1200px) {
+    .stats-card h2 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 992px) {
+    .ocms-sidebar-wrapper {
+        min-height: auto;
+        padding: 10px;
+    }
+
+    .ocms-sidebar-wrapper .sidebar {
+        min-height: auto;
+        border-radius: 18px;
+    }
+
+    .ocms-main {
+        padding: 15px;
+    }
+
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .top-navbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .navbar-right {
+        justify-content: space-between;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr !important;
+    }
+
+    .table-responsive {
+        border-radius: 15px;
+        overflow-x: auto;
+    }
+}

@@ -1,0 +1,29 @@
+.table{
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    background:white;
+
+}
+
+.table thead{
+
+    background:#6C63FF;
+
+    color:white;
+
+}
+
+.table tbody tr{
+
+    transition:.3s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#F4F6FF;
+
+}

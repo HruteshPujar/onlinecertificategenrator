@@ -1,0 +1,116 @@
+/* ===============================
+        Dashboard Cards
+================================ */
+
+.stats-card{
+
+    border-radius:25px;
+
+    padding:25px;
+
+    color:white;
+
+    overflow:hidden;
+
+    position:relative;
+
+    transition:.4s;
+
+    cursor:pointer;
+
+    min-height:170px;
+
+}
+
+.stats-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:0 20px 35px rgba(0,0,0,.18);
+
+}
+
+.stats-card h5{
+
+    font-size:18px;
+
+    opacity:.95;
+
+}
+
+.stats-card h2{
+
+    font-size:40px;
+
+    margin-top:10px;
+
+    font-weight:700;
+
+}
+
+.stats-card p{
+
+    margin-top:20px;
+
+    opacity:.85;
+
+}
+
+.stats-icon{
+
+    position:absolute;
+
+    top:25px;
+
+    right:25px;
+
+    font-size:55px;
+
+    opacity:.25;
+
+}
+
+/* Card Gradients */
+
+.gradient-purple{
+
+    background:
+    linear-gradient(
+    135deg,
+    #7B61FF,
+    #5A4BFF
+    );
+
+}
+
+.gradient-green{
+
+    background:
+    linear-gradient(
+    135deg,
+    #36D1DC,
+    #5B86E5
+    );
+
+}
+
+.gradient-orange{
+
+    background:
+    linear-gradient(
+    135deg,
+    #FFB75E,
+    #ED8F03
+    );
+
+}
+
+.gradient-red{
+
+    background:
+    linear-gradient(
+    135deg,
+    #FF6A88,
+    #FF99AC
+    );
+}

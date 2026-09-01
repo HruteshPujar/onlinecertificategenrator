@@ -1,0 +1,33 @@
+<form method="GET" class="mb-4">
+
+    <div class="input-group">
+
+        <span class="input-group-text">
+
+            <i class="bi bi-search"></i>
+
+        </span>
+
+        <input
+
+            type="text"
+
+            name="search"
+
+            class="form-control"
+
+            placeholder="Search events..."
+
+            value="{{ request.GET.search }}"
+
+        >
+
+        <button class="btn btn-primary">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container-fluid px-0">
+
+    <div class="row g-0">
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <div class="col-lg-2">
+
+            <div class="ocms-sidebar-wrapper">
+
+                {% include "components/sidebar.html" %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MAIN CONTENT ================= -->
+
+        <div class="col-lg-10">
+
+            <main class="ocms-main">
+
+                {% include "components/navbar.html" %}
+
+                <div class="ocms-content">
+
+                    {% block dashboard_content %}
+                    {% endblock %}
+
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

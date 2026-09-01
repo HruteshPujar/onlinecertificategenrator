@@ -1,0 +1,350 @@
+
+
+
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* ==============================
+        Global
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#EEF2F9;
+
+    color:#444;
+
+}
+
+/* ==============================
+        Sidebar
+================================ */
+
+.sidebar{
+
+    min-height:100vh;
+
+    background:#EEF2F9;
+
+    box-shadow:
+    8px 8px 18px #d1d9e6,
+    -8px -8px 18px #ffffff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+}
+
+.sidebar h3{
+
+    color:#6C63FF;
+
+    font-weight:700;
+
+}
+
+.sidebar p{
+
+    color:#888;
+
+    font-size:14px;
+
+}
+
+.sidebar .nav-link{
+
+    margin:12px 0;
+
+    padding:14px;
+
+    border-radius:12px;
+
+    color:#555;
+
+    transition:.3s;
+
+}
+
+.sidebar .nav-link:hover{
+
+    background:#6C63FF;
+
+    color:white !important;
+
+    transform:translateX(5px);
+
+}
+
+.sidebar .active{
+
+    background:#6C63FF;
+
+    color:white !important;
+
+}
+
+/* ==============================
+        Cards
+================================ */
+
+.card{
+
+    border:none;
+
+    border-radius:20px;
+
+    background:#EEF2F9;
+
+    box-shadow:
+
+    8px 8px 18px #d1d9e6,
+
+    -8px -8px 18px #ffffff;
+
+    transition:.35s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.card h5{
+
+    font-size:18px;
+
+    color:#666;
+
+}
+
+.card h2{
+
+    font-weight:700;
+
+    color:#333;
+
+}
+
+/* ==============================
+        Statistics Colors
+================================ */
+
+.bg-primary{
+
+    background:#6C63FF !important;
+
+}
+
+.bg-success{
+
+    background:#4ECDC4 !important;
+
+}
+
+.bg-warning{
+
+    background:#FFB547 !important;
+
+}
+
+.bg-danger{
+
+    background:#FF6B6B !important;
+
+}
+
+.card.bg-primary,
+.card.bg-success,
+.card.bg-warning,
+.card.bg-danger{
+
+    color:white;
+
+    box-shadow:none;
+
+}
+
+/* ==============================
+        Tables
+================================ */
+
+.table{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:#6C63FF;
+
+    color:white;
+
+}
+
+.table tbody tr{
+
+    transition:.2s;
+
+}
+
+.table tbody tr:hover{
+
+    background:#f5f5ff;
+
+}
+
+/* ==============================
+        Buttons
+================================ */
+
+.btn{
+
+    border-radius:12px;
+
+    border:none;
+
+    padding:10px 18px;
+
+    transition:.3s;
+
+}
+
+.btn-primary{
+
+    background:#6C63FF;
+
+}
+
+.btn-success{
+
+    background:#4ECDC4;
+
+}
+
+.btn-danger{
+
+    background:#FF6B6B;
+
+}
+
+.btn-warning{
+
+    background:#FFB547;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ==============================
+        Form Controls
+================================ */
+
+.form-control,
+.form-select{
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#EEF2F9;
+
+    box-shadow:
+
+    inset 6px 6px 12px #d1d9e6,
+
+    inset -6px -6px 12px #ffffff;
+
+    padding:12px;
+
+}
+
+.form-control:focus{
+
+    box-shadow:
+
+    0 0 0 3px rgba(108,99,255,.2);
+
+}
+
+/* ==============================
+        Charts
+================================ */
+
+canvas{
+
+    max-height:320px;
+
+}
+
+/* ==============================
+        Navbar
+================================ */
+
+.navbar{
+
+    background:#EEF2F9;
+
+    box-shadow:
+
+    8px 8px 18px #d1d9e6,
+
+    -8px -8px 18px #ffffff;
+
+    border-radius:20px;
+
+}
+
+/* ==============================
+        Footer
+================================ */
+
+.footer{
+
+    margin-top:30px;
+
+    color:#888;
+
+    text-align:center;
+
+}
+
+/* ==============================
+        Scrollbar
+================================ */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#6C63FF;
+
+    border-radius:20px;
+
+}

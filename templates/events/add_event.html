@@ -1,0 +1,151 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}{{ title|default:"Add Event" }} - OCMS{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="row justify-content-center">
+    <div class="col-xl-9 col-lg-10">
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2 class="fw-bold mb-1">📅 {{ title|default:"Add New Event" }}</h2>
+                <p class="text-muted mb-0">Fill in the event details and optional certificate template settings</p>
+            </div>
+            <a href="{% url 'event_list' %}" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Back to Events
+            </a>
+        </div>
+
+        <div class="ocms-form-card mb-5">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <!-- Section 1: Basic Event Information -->
+                <div class="section-title">
+                    <i class="bi bi-info-circle me-1"></i> Basic Information
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-12">
+                        <label class="form-label">Event Title <span class="text-danger">*</span></label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                        <div class="text-danger small mt-1">{{ form.title.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Event Date <span class="text-danger">*</span></label>
+                        {{ form.event_date }}
+                        {% if form.event_date.errors %}
+                        <div class="text-danger small mt-1">{{ form.event_date.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Venue / Platform <span class="text-danger">*</span></label>
+                        {{ form.venue }}
+                        {% if form.venue.errors %}
+                        <div class="text-danger small mt-1">{{ form.venue.errors }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Event Description</label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                        <div class="text-danger small mt-1">{{ form.description.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Section 2: Certificate Template -->
+                <div class="section-title">
+                    <i class="bi bi-award me-1"></i> Certificate Template
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-md-12">
+                        <label class="form-label">Certificate Background Image (Optional)</label>
+                        {{ form.certificate_template }}
+                        <div class="help-text">
+                            Upload a high-resolution PNG or JPG background template. Leave empty to automatically use our high-quality default certificate design.
+                        </div>
+                        {% if form.certificate_template.errors %}
+                        <div class="text-danger small mt-1">{{ form.certificate_template.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="section-divider"></div>
+
+                <!-- Section 3: Advanced Coordinate & Font Settings -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="section-title mb-0">
+                        <i class="bi bi-sliders me-1"></i> Certificate Positioning & Font Settings (Optional)
+                    </div>
+                    <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#advancedSettings">
+                        <i class="bi bi-chevron-down"></i> Toggle Position Settings
+                    </button>
+                </div>
+
+                <div class="collapse" id="advancedSettings">
+                    <div class="p-3 bg-light rounded-4 mb-4">
+                        <p class="text-muted small mb-3">Set custom (X, Y) pixel coordinates if your template requires specific text positions. Set 0 for automatic centering and optimal placement.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Name X (px)</label>
+                                {{ form.name_x }}
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Name Y (px)</label>
+                                {{ form.name_y }}
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Name Font Size</label>
+                                {{ form.name_font_size }}
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Event Font Size</label>
+                                {{ form.event_font_size }}
+                            </div>
+
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Event X (px)</label>
+                                {{ form.event_x }}
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Event Y (px)</label>
+                                {{ form.event_y }}
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Date X (px)</label>
+                                {{ form.date_x }}
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <label class="form-label">Date Y (px)</label>
+                                {{ form.date_y }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="d-flex gap-2 justify-content-end mt-4">
+                    <a href="{% url 'event_list' %}" class="btn btn-secondary px-4">
+                        Cancel
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4">
+                        <i class="bi bi-check-circle"></i> {{ button_text|default:"Save Event" }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

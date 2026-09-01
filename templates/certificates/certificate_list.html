@@ -1,0 +1,158 @@
+{% extends "dashboard/dashboard_base.html" %}
+
+{% block title %}Certificates Gallery - OCMS{% endblock %}
+
+{% block dashboard_content %}
+
+<!-- Header -->
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+    <div>
+        <h2 class="fw-bold mb-1">🏆 Certificates Repository</h2>
+        <p class="text-muted mb-0">Browse and download all generated certificates across all events</p>
+    </div>
+    <div class="d-flex gap-2">
+        <span class="badge badge-success p-2">
+            <i class="bi bi-award-fill me-1"></i> {{ total_generated }} Generated
+        </span>
+        <span class="badge badge-warning p-2">
+            <i class="bi bi-hourglass-split me-1"></i> {{ total_pending }} Pending
+        </span>
+    </div>
+</div>
+
+<!-- Filter & Search Bar -->
+<div class="dashboard-card mb-4">
+    <div class="card-body p-3">
+        <form method="GET" class="row g-2 align-items-center">
+            <!-- Event Filter -->
+            <div class="col-md-4 col-sm-6">
+                <select name="event" class="form-select" onchange="this.form.submit()">
+                    <option value="">-- All Events ({{ events.count }}) --</option>
+                    {% for event in events %}
+                    <option value="{{ event.id }}" {% if selected_event == event.id|stringformat:"i" %}selected{% endif %}>
+                        {{ event.title }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Search Input -->
+            <div class="col-md-6 col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-search text-muted"></i>
+                    </span>
+                    <input
+                        type="text"
+                        name="search"
+                        class="form-control border-start-0 ps-0"
+                        placeholder="Search by participant name, email, event..."
+                        value="{{ search|default:'' }}"
+                    >
+                </div>
+            </div>
+
+            <!-- Submit / Clear -->
+            <div class="col-md-2 col-sm-12 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1">
+                    Search
+                </button>
+                {% if search or selected_event %}
+                <a href="{% url 'certificate_list' %}" class="btn btn-secondary" title="Clear">
+                    <i class="bi bi-x-lg"></i>
+                </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Certificates Grid -->
+<div class="row g-4 mb-4">
+    {% for participant in page_obj %}
+    <div class="col-xl-4 col-lg-6 col-md-6">
+        <div class="dashboard-card h-100 p-3 d-flex flex-column">
+            <!-- Certificate Thumbnail -->
+            <div class="certificate-preview-box mb-3 p-2 bg-light text-center" style="min-height: 180px; display: flex; align-items: center; justify-content: center;">
+                {% if participant.generated_certificate %}
+                <a href="{% url 'preview_certificate' participant.id %}">
+                    <img src="{{ participant.generated_certificate.url }}" alt="{{ participant.full_name }}" class="img-fluid rounded" style="max-height: 160px; object-fit: contain;">
+                </a>
+                {% else %}
+                <i class="bi bi-award text-muted" style="font-size: 40px;"></i>
+                {% endif %}
+            </div>
+
+            <!-- Participant & Event Info -->
+            <div class="mb-3 flex-grow-1">
+                <h5 class="fw-bold mb-1" style="font-size: 16px;">{{ participant.full_name }}</h5>
+                <div class="text-primary small mb-1"><i class="bi bi-calendar-event me-1"></i>{{ participant.event.title }}</div>
+                <div class="text-muted small"><i class="bi bi-envelope me-1"></i>{{ participant.email }}</div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex gap-2 pt-2 border-top">
+                <a href="{% url 'preview_certificate' participant.id %}" class="btn btn-sm btn-outline-primary flex-fill">
+                    <i class="bi bi-eye"></i> View
+                </a>
+                {% if participant.generated_certificate %}
+                <a href="{{ participant.generated_certificate.url }}" download class="btn btn-sm btn-secondary" title="Download PNG">
+                    <i class="bi bi-image"></i> PNG
+                </a>
+                <a href="{% url 'download_pdf' participant.id %}" class="btn btn-sm btn-danger" title="Download PDF">
+                    <i class="bi bi-file-earmark-pdf"></i> PDF
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <div class="dashboard-card p-5 text-center">
+            <i class="bi bi-award text-muted d-block mb-3" style="font-size: 48px;"></i>
+            <h5>No generated certificates found</h5>
+            <p class="text-muted small">Generate certificates from the Participants tab or create a new event.</p>
+            <a href="{% url 'participant_list' %}" class="btn btn-primary mt-2">
+                <i class="bi bi-people"></i> Go to Participants
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="d-flex justify-content-center">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search %}&search={{ search }}{% endif %}{% if selected_event %}&event={{ selected_event }}{% endif %}">
+                <i class="bi bi-chevron-left"></i> Previous
+            </a>
+        </li>
+        {% endif %}
+
+        {% for p in page_obj.paginator.page_range %}
+            {% if page_obj.number == p %}
+            <li class="page-item active">
+                <span class="page-link">{{ p }}</span>
+            </li>
+            {% elif p >= page_obj.number|add:"-2" and p <= page_obj.number|add:"2" %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ p }}{% if search %}&search={{ search }}{% endif %}{% if selected_event %}&event={{ selected_event }}{% endif %}">{{ p }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search %}&search={{ search }}{% endif %}{% if selected_event %}&event={{ selected_event }}{% endif %}">
+                Next <i class="bi bi-chevron-right"></i>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+
+{% endblock %}

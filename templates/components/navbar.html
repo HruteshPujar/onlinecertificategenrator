@@ -1,33 +1,58 @@
-<div class="top-navbar">
+<header class="ocms-topbar">
+    <div class="topbar-left">
+        <button type="button" class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Open Sidebar">
+            <i class="bi bi-list"></i>
+        </button>
 
-    <div>
-
-        <h3>
-
-            Welcome Back 👋
-
-        </h3>
-
-    </div>
-
-    <div class="navbar-right">
-
-        <input
-            type="text"
-            placeholder="Search..."
-            class="search-box"
-        >
-
-        <i class="bi bi-bell-fill notification"></i>
-
-        <div class="profile">
-
-            <i class="bi bi-person-circle"></i>
-
-            {{ request.user.username }}
-
+        <div class="topbar-heading">
+            <h1 class="topbar-title">
+                {% if request.resolver_match.url_name == 'dashboard' %}
+                    Overview
+                {% elif request.resolver_match.url_name in 'event_list,add_event,edit_event' %}
+                    Events Management
+                {% elif request.resolver_match.url_name in 'participant_list,add_participant,edit_participant' %}
+                    Attendees & Participants
+                {% elif request.resolver_match.url_name == 'preview_certificate' %}
+                    Certificate Preview
+                {% elif request.resolver_match.url_name == 'certificate_list' %}
+                    Certificates Repository
+                {% elif request.resolver_match.url_name == 'import_participants' %}
+                    Bulk Ingestion
+                {% elif request.resolver_match.url_name == 'reports_dashboard' %}
+                    System Analytics & Reports
+                {% else %}
+                    Certificate Studio
+                {% endif %}
+            </h1>
+            <p class="topbar-subtitle">Online Certificate Management Platform</p>
         </div>
-
     </div>
 
-</div>
+    <div class="topbar-right">
+        <!-- Search bar -->
+        <form action="{% url 'participant_list' %}" method="GET" class="topbar-search-form">
+            <i class="bi bi-search"></i>
+            <input 
+                type="text" 
+                name="search" 
+                class="topbar-search-input" 
+                placeholder="Search attendees, USN..." 
+                value="{{ request.GET.search|default:'' }}"
+            >
+        </form>
+
+        <!-- Quick Action Link: New Event -->
+        <a href="{% url 'add_event' %}" class="btn btn-sm btn-primary d-none d-md-inline-flex" title="Create Event">
+            <i class="bi bi-plus-lg"></i>
+            <span>New Event</span>
+        </a>
+
+        <!-- Profile Chip -->
+        <div class="topbar-profile-chip">
+            <div class="topbar-avatar">
+                {{ request.user.username|default:"A"|slice:":1"|upper }}
+            </div>
+            <span class="topbar-username">{{ request.user.username|default:"Admin" }}</span>
+        </div>
+    </div>
+</header>

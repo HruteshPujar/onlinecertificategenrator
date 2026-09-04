@@ -1,51 +1,70 @@
 /* ==========================================
-   OCMS RESPONSIVE STYLES
+   OCMS RESPONSIVE UTILITIES & BREAKPOINTS
 ========================================== */
 
-@media (max-width: 1200px) {
+@media (max-width: 1199.98px) {
     .stats-card h2 {
-        font-size: 32px;
+        font-size: 30px;
     }
 }
 
-@media (max-width: 992px) {
-    .ocms-sidebar-wrapper {
-        min-height: auto;
-        padding: 10px;
+@media (max-width: 991.98px) {
+    .ocms-main-wrapper {
+        width: 100%;
     }
 
-    .ocms-sidebar-wrapper .sidebar {
-        min-height: auto;
-        border-radius: 18px;
+    .dashboard-card-header {
+        padding: 16px 20px;
+        flex-wrap: wrap;
     }
 
-    .ocms-main {
-        padding: 15px;
+    .dashboard-card-body {
+        padding: 20px;
     }
 
-    .quick-actions {
-        grid-template-columns: repeat(2, 1fr) !important;
+    .dashboard-table th,
+    .dashboard-table td,
+    .table th,
+    .table td {
+        padding: 12px 14px;
     }
 }
 
-@media (max-width: 768px) {
-    .top-navbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        padding: 15px;
+@media (max-width: 767.98px) {
+    .ocms-content {
+        padding: 16px 12px 24px;
     }
 
-    .navbar-right {
-        justify-content: space-between;
+    .stats-card {
+        min-height: 140px;
+        padding: 18px;
     }
 
-    .quick-actions {
-        grid-template-columns: 1fr !important;
+    .stats-card h2 {
+        font-size: 28px;
     }
 
-    .table-responsive {
-        border-radius: 15px;
-        overflow-x: auto;
+    .stats-icon {
+        font-size: 50px;
+        right: 12px;
+        bottom: 8px;
+    }
+
+    .ocms-form-card {
+        padding: 20px 16px;
+    }
+
+    .dashboard-table th,
+    .dashboard-table td,
+    .table th,
+    .table td {
+        font-size: 12.5px;
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .btn {
+        font-size: 13px;
     }
 }

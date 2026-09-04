@@ -1,14 +1,14 @@
 {% extends "dashboard/dashboard_base.html" %}
 
-{% block title %}Certificates Gallery - OCMS{% endblock %}
+{% block title %}Certificates Repository - OCMS Studio{% endblock %}
 
 {% block dashboard_content %}
 
 <!-- Header -->
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
     <div>
-        <h2 class="fw-bold mb-1">🏆 Certificates Repository</h2>
-        <p class="text-muted mb-0">Browse and download all generated certificates across all events</p>
+        <h2 class="fw-bold mb-1">Certificates Repository</h2>
+        <p class="text-muted mb-0">Browse, preview, and download all generated certificates across all events</p>
     </div>
     <div class="d-flex gap-2">
         <span class="badge badge-success p-2">
@@ -22,10 +22,10 @@
 
 <!-- Filter & Search Bar -->
 <div class="dashboard-card mb-4">
-    <div class="card-body p-3">
+    <div class="dashboard-card-body py-3">
         <form method="GET" class="row g-2 align-items-center">
             <!-- Event Filter -->
-            <div class="col-md-4 col-sm-6">
+            <div class="col-lg-4 col-md-5 col-sm-6">
                 <select name="event" class="form-select" onchange="this.form.submit()">
                     <option value="">-- All Events ({{ events.count }}) --</option>
                     {% for event in events %}
@@ -37,9 +37,9 @@
             </div>
 
             <!-- Search Input -->
-            <div class="col-md-6 col-sm-6">
+            <div class="col-lg-6 col-md-5 col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-text bg-white border-end-0">
+                    <span class="input-group-text bg-light border-end-0">
                         <i class="bi bi-search text-muted"></i>
                     </span>
                     <input
@@ -53,12 +53,12 @@
             </div>
 
             <!-- Submit / Clear -->
-            <div class="col-md-2 col-sm-12 d-flex gap-2">
+            <div class="col-lg-2 col-md-2 col-sm-12 d-flex gap-2">
                 <button type="submit" class="btn btn-primary flex-grow-1">
                     Search
                 </button>
                 {% if search or selected_event %}
-                <a href="{% url 'certificate_list' %}" class="btn btn-secondary" title="Clear">
+                <a href="{% url 'certificate_list' %}" class="btn btn-secondary" title="Clear Filters">
                     <i class="bi bi-x-lg"></i>
                 </a>
                 {% endif %}
@@ -71,28 +71,31 @@
 <div class="row g-4 mb-4">
     {% for participant in page_obj %}
     <div class="col-xl-4 col-lg-6 col-md-6">
-        <div class="dashboard-card h-100 p-3 d-flex flex-column">
+        <div class="cert-gallery-card h-100 d-flex flex-column">
             <!-- Certificate Thumbnail -->
-            <div class="certificate-preview-box mb-3 p-2 bg-light text-center" style="min-height: 180px; display: flex; align-items: center; justify-content: center;">
+            <div class="cert-thumbnail-wrap">
                 {% if participant.generated_certificate %}
                 <a href="{% url 'preview_certificate' participant.id %}">
-                    <img src="{{ participant.generated_certificate.url }}" alt="{{ participant.full_name }}" class="img-fluid rounded" style="max-height: 160px; object-fit: contain;">
+                    <img src="{{ participant.generated_certificate.url }}" alt="Certificate for {{ participant.full_name }}" loading="lazy">
                 </a>
                 {% else %}
-                <i class="bi bi-award text-muted" style="font-size: 40px;"></i>
+                <div class="text-center text-muted">
+                    <i class="bi bi-award fs-1 d-block mb-1"></i>
+                    <span class="small">Not Yet Built</span>
+                </div>
                 {% endif %}
             </div>
 
             <!-- Participant & Event Info -->
-            <div class="mb-3 flex-grow-1">
-                <h5 class="fw-bold mb-1" style="font-size: 16px;">{{ participant.full_name }}</h5>
-                <div class="text-primary small mb-1"><i class="bi bi-calendar-event me-1"></i>{{ participant.event.title }}</div>
+            <div class="p-3 flex-grow-1">
+                <h5 class="fw-bold fs-6 mb-1 text-dark">{{ participant.full_name }}</h5>
+                <div class="text-primary small mb-1"><i class="bi bi-calendar-event me-1"></i>{{ participant.event.title|truncatechars:30 }}</div>
                 <div class="text-muted small"><i class="bi bi-envelope me-1"></i>{{ participant.email }}</div>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="d-flex gap-2 pt-2 border-top">
-                <a href="{% url 'preview_certificate' participant.id %}" class="btn btn-sm btn-outline-primary flex-fill">
+            <!-- Action Buttons Footer -->
+            <div class="p-3 pt-0 border-top mt-auto d-flex gap-2 justify-content-between align-items-center">
+                <a href="{% url 'preview_certificate' participant.id %}" class="btn btn-sm btn-outline-primary flex-grow-1">
                     <i class="bi bi-eye"></i> View
                 </a>
                 {% if participant.generated_certificate %}
@@ -110,9 +113,9 @@
     <div class="col-12">
         <div class="dashboard-card p-5 text-center">
             <i class="bi bi-award text-muted d-block mb-3" style="font-size: 48px;"></i>
-            <h5>No generated certificates found</h5>
-            <p class="text-muted small">Generate certificates from the Participants tab or create a new event.</p>
-            <a href="{% url 'participant_list' %}" class="btn btn-primary mt-2">
+            <h5 class="fw-bold">No Generated Certificates Found</h5>
+            <p class="text-muted small mb-3">Generate individual certificates from the Participants tab or create a new event.</p>
+            <a href="{% url 'participant_list' %}" class="btn btn-primary">
                 <i class="bi bi-people"></i> Go to Participants
             </a>
         </div>
@@ -127,7 +130,7 @@
         {% if page_obj.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if search %}&search={{ search }}{% endif %}{% if selected_event %}&event={{ selected_event }}{% endif %}">
-                <i class="bi bi-chevron-left"></i> Previous
+                <i class="bi bi-chevron-left"></i>
             </a>
         </li>
         {% endif %}
@@ -147,7 +150,7 @@
         {% if page_obj.has_next %}
         <li class="page-item">
             <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if search %}&search={{ search }}{% endif %}{% if selected_event %}&event={{ selected_event }}{% endif %}">
-                Next <i class="bi bi-chevron-right"></i>
+                <i class="bi bi-chevron-right"></i>
             </a>
         </li>
         {% endif %}

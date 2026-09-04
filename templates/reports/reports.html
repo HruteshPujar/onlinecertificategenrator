@@ -1,18 +1,18 @@
 {% extends "dashboard/dashboard_base.html" %}
 
-{% block title %}Reports & Analytics - OCMS{% endblock %}
+{% block title %}System Analytics & Reports - OCMS Studio{% endblock %}
 
 {% block dashboard_content %}
 
 <!-- Header -->
 <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
     <div>
-        <h2 class="fw-bold mb-1">📈 Reports & Analytics</h2>
-        <p class="text-muted mb-0">System performance metrics, event summaries, and CSV data export</p>
+        <h2 class="fw-bold mb-1">Reports & Analytics</h2>
+        <p class="text-muted mb-0">System performance metrics, event statistics, and CSV data export</p>
     </div>
     <div class="d-flex gap-2 flex-wrap">
         <a href="{% url 'export_participants_csv' %}" class="btn btn-success">
-            <i class="bi bi-file-earmark-spreadsheet"></i> Export All Participants CSV
+            <i class="bi bi-file-earmark-spreadsheet-fill"></i> Export All Participants CSV
         </a>
     </div>
 </div>
@@ -24,9 +24,9 @@
             <div class="stats-content">
                 <h5>Total Events</h5>
                 <h2>{{ total_events }}</h2>
-                <p><i class="bi bi-calendar-check me-1"></i> Active in system</p>
+                <p><i class="bi bi-calendar2-check"></i> Active in database</p>
             </div>
-            <div class="stats-icon"><i class="bi bi-calendar-event"></i></div>
+            <i class="bi bi-calendar-event stats-icon"></i>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
@@ -34,9 +34,9 @@
             <div class="stats-content">
                 <h5>Total Attendees</h5>
                 <h2>{{ total_participants }}</h2>
-                <p><i class="bi bi-people me-1"></i> Enrolled across events</p>
+                <p><i class="bi bi-people"></i> Enrolled across events</p>
             </div>
-            <div class="stats-icon"><i class="bi bi-people-fill"></i></div>
+            <i class="bi bi-people-fill stats-icon"></i>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
@@ -44,9 +44,9 @@
             <div class="stats-content">
                 <h5>Certificates Built</h5>
                 <h2>{{ total_certificates }}</h2>
-                <p><i class="bi bi-award me-1"></i> Ready for download</p>
+                <p><i class="bi bi-award"></i> Ready for download</p>
             </div>
-            <div class="stats-icon"><i class="bi bi-award-fill"></i></div>
+            <i class="bi bi-award-fill stats-icon"></i>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
@@ -54,18 +54,18 @@
             <div class="stats-content">
                 <h5>Emails Dispatched</h5>
                 <h2>{{ total_emails }}</h2>
-                <p><i class="bi bi-send-check me-1"></i> Successfully delivered</p>
+                <p><i class="bi bi-send-check"></i> Successfully delivered</p>
             </div>
-            <div class="stats-icon"><i class="bi bi-envelope-fill"></i></div>
+            <i class="bi bi-envelope-fill stats-icon"></i>
         </div>
     </div>
 </div>
 
-<!-- Event Breakdown Table -->
+<!-- Event Breakdown Table Card -->
 <div class="dashboard-card mb-4">
     <div class="dashboard-card-header">
         <div>
-            <h5>📊 Event-wise Performance Breakdown</h5>
+            <h5><i class="bi bi-table text-primary"></i> Event-wise Performance Breakdown</h5>
             <p>Participant enrollment, certificate issuance, and email dispatch status per event</p>
         </div>
     </div>
@@ -76,9 +76,9 @@
                     <th>Event</th>
                     <th>Date & Venue</th>
                     <th>Total Attendees</th>
-                    <th>Certificates</th>
+                    <th>Certificates Issued</th>
                     <th>Emails Sent</th>
-                    <th>Export</th>
+                    <th class="text-end">Data Export</th>
                 </tr>
             </thead>
             <tbody>
@@ -90,19 +90,19 @@
                                 <i class="bi bi-calendar-check"></i>
                             </div>
                             <div>
-                                <strong>{{ event.title }}</strong>
+                                <strong class="fs-6 d-block">{{ event.title }}</strong>
                             </div>
                         </div>
                     </td>
                     <td>
-                        <div>{{ event.event_date|date:"M d, Y" }}</div>
-                        <div class="text-muted small">{{ event.venue }}</div>
+                        <div class="fw-semibold">{{ event.event_date|date:"M d, Y" }}</div>
+                        <div class="text-muted small"><i class="bi bi-geo-alt"></i> {{ event.venue }}</div>
                     </td>
                     <td>
-                        <span class="badge badge-primary">{{ event.total_participants }}</span>
+                        <span class="badge badge-primary">{{ event.total_participants }} Attendees</span>
                     </td>
                     <td>
-                        <span class="badge badge-success">{{ event.certs_generated }}</span>
+                        <span class="badge badge-success">{{ event.certs_generated }} Generated</span>
                         {% if event.total_participants > event.certs_generated %}
                         <span class="badge badge-warning">{{ event.total_participants|add:"-"|add:event.certs_generated|default:0 }} pending</span>
                         {% endif %}
@@ -110,15 +110,18 @@
                     <td>
                         <span class="badge badge-primary">{{ event.emails_sent }} / {{ event.total_participants }}</span>
                     </td>
-                    <td>
-                        <a href="{% url 'export_participants_csv' %}?event={{ event.id }}" class="btn btn-sm btn-outline-success py-1 px-2" title="Export CSV for this event">
-                            <i class="bi bi-file-earmark-excel"></i> CSV
+                    <td class="text-end">
+                        <a href="{% url 'export_participants_csv' %}?event={{ event.id }}" class="btn btn-sm btn-outline-success" title="Export CSV for this event">
+                            <i class="bi bi-file-earmark-excel"></i> Export CSV
                         </a>
                     </td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="6" class="empty-state">No event data available yet.</td>
+                    <td colspan="6" class="empty-state">
+                        <i class="bi bi-bar-chart-line d-block mb-2"></i>
+                        No event analytical data available yet.
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -127,32 +130,28 @@
 </div>
 
 <!-- College / Institution Breakdown -->
-<div class="row g-4 mb-4">
-    <div class="col-lg-12">
-        <div class="dashboard-card">
-            <div class="dashboard-card-header">
-                <div>
-                    <h5>🏛️ Top Participating Colleges / Organizations</h5>
-                    <p>Institutions with highest registration counts</p>
-                </div>
-            </div>
-            <div class="card-body p-4">
-                <div class="row g-3">
-                    {% for item in colleges %}
-                    <div class="col-md-6 col-lg-4">
-                        <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center">
-                            <div>
-                                <i class="bi bi-building text-primary me-2"></i>
-                                <strong>{{ item.college|truncatechars:28 }}</strong>
-                            </div>
-                            <span class="badge badge-primary">{{ item.count }} attendees</span>
-                        </div>
+<div class="dashboard-card mb-4">
+    <div class="dashboard-card-header">
+        <div>
+            <h5><i class="bi bi-building text-primary"></i> Top Participating Institutions</h5>
+            <p>Colleges and organizations with highest attendee registrations</p>
+        </div>
+    </div>
+    <div class="dashboard-card-body p-4">
+        <div class="row g-3">
+            {% for item in colleges %}
+            <div class="col-md-6 col-lg-4">
+                <div class="p-3 bg-light rounded-3 d-flex justify-content-between align-items-center border">
+                    <div class="text-truncate me-2">
+                        <i class="bi bi-building text-primary me-2"></i>
+                        <strong class="text-dark">{{ item.college|default:"Direct Registration"|truncatechars:28 }}</strong>
                     </div>
-                    {% empty %}
-                    <div class="col-12 text-muted small">No college information recorded yet.</div>
-                    {% endfor %}
+                    <span class="badge badge-primary flex-shrink-0">{{ item.count }} attendees</span>
                 </div>
             </div>
+            {% empty %}
+            <div class="col-12 text-muted small">No institution affiliation data recorded yet.</div>
+            {% endfor %}
         </div>
     </div>
 </div>

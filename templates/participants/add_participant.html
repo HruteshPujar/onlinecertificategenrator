@@ -1,6 +1,6 @@
 {% extends "dashboard/dashboard_base.html" %}
 
-{% block title %}{{ title|default:"Add Participant" }} - OCMS{% endblock %}
+{% block title %}{{ title|default:"Add Participant" }} - OCMS Studio{% endblock %}
 
 {% block dashboard_content %}
 
@@ -9,7 +9,7 @@
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
             <div>
-                <h2 class="fw-bold mb-1">👤 {{ title|default:"Add New Participant" }}</h2>
+                <h2 class="fw-bold mb-1">{{ title|default:"Add New Participant" }}</h2>
                 <p class="text-muted mb-0">Register attendee for certificate generation and email dispatch</p>
             </div>
             <a href="{% url 'participant_list' %}" class="btn btn-secondary">
@@ -23,11 +23,11 @@
 
                 <!-- Section 1: Event Selection -->
                 <div class="section-title">
-                    <i class="bi bi-calendar-event me-1"></i> Target Event
+                    <i class="bi bi-calendar2-event-fill"></i> Select Event
                 </div>
 
                 <div class="mb-4">
-                    <label class="form-label">Select Event <span class="text-danger">*</span></label>
+                    <label class="form-label">Target Event <span class="text-danger">*</span></label>
                     {{ form.event }}
                     {% if form.event.errors %}
                     <div class="text-danger small mt-1">{{ form.event.errors }}</div>
@@ -38,14 +38,14 @@
 
                 <!-- Section 2: Personal Information -->
                 <div class="section-title">
-                    <i class="bi bi-person me-1"></i> Attendee Information
+                    <i class="bi bi-person-badge-fill"></i> Attendee Details
                 </div>
 
                 <div class="row g-3 mb-4">
                     <div class="col-md-12">
                         <label class="form-label">Full Name <span class="text-danger">*</span></label>
                         {{ form.full_name }}
-                        <div class="help-text">This name will be printed directly onto the certificate.</div>
+                        <div class="help-text">This name will be dynamically rendered on the certificate.</div>
                         {% if form.full_name.errors %}
                         <div class="text-danger small mt-1">{{ form.full_name.errors }}</div>
                         {% endif %}
@@ -93,7 +93,7 @@
                 </div>
 
                 <!-- Form Actions -->
-                <div class="d-flex gap-2 justify-content-end mt-4">
+                <div class="d-flex gap-2 justify-content-end mt-4 pt-3 border-top">
                     <a href="{% url 'participant_list' %}" class="btn btn-secondary px-4">
                         Cancel
                     </a>
@@ -106,4 +106,4 @@
     </div>
 </div>
 
-{% endblock %}
+{% endblock %}

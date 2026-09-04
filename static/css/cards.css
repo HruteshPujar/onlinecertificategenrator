@@ -1,116 +1,150 @@
-/* ===============================
-        Dashboard Cards
-================================ */
+/* ==========================================
+   OCMS CARDS & STATS CARDS
+========================================== */
 
-.stats-card{
-
-    border-radius:25px;
-
-    padding:25px;
-
-    color:white;
-
-    overflow:hidden;
-
-    position:relative;
-
-    transition:.4s;
-
-    cursor:pointer;
-
-    min-height:170px;
-
+/* Standard Card */
+.dashboard-card {
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    position: relative;
+    overflow: hidden;
 }
 
-.stats-card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:0 20px 35px rgba(0,0,0,.18);
-
+.dashboard-card:hover {
+    box-shadow: var(--shadow-md);
 }
 
-.stats-card h5{
-
-    font-size:18px;
-
-    opacity:.95;
-
+.dashboard-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color-light);
+    gap: 12px;
 }
 
-.stats-card h2{
-
-    font-size:40px;
-
-    margin-top:10px;
-
-    font-weight:700;
-
+.dashboard-card-header h5 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.stats-card p{
-
-    margin-top:20px;
-
-    opacity:.85;
-
+.dashboard-card-header p {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin: 2px 0 0;
 }
 
-.stats-icon{
-
-    position:absolute;
-
-    top:25px;
-
-    right:25px;
-
-    font-size:55px;
-
-    opacity:.25;
-
+.dashboard-card-body {
+    padding: 24px;
 }
 
-/* Card Gradients */
-
-.gradient-purple{
-
-    background:
-    linear-gradient(
-    135deg,
-    #7B61FF,
-    #5A4BFF
-    );
-
+.view-all {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transition-fast);
 }
 
-.gradient-green{
-
-    background:
-    linear-gradient(
-    135deg,
-    #36D1DC,
-    #5B86E5
-    );
-
+.view-all:hover {
+    color: var(--primary-hover);
+    transform: translateX(3px);
 }
 
-.gradient-orange{
+/* ==========================================
+   STATISTICS CARDS (Hero Cards)
+========================================== */
 
-    background:
-    linear-gradient(
-    135deg,
-    #FFB75E,
-    #ED8F03
-    );
-
+.stats-card {
+    position: relative;
+    min-height: 160px;
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    color: #FFFFFF;
+    overflow: hidden;
+    transition: var(--transition-normal);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-decoration: none;
 }
 
-.gradient-red{
+.stats-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+}
 
-    background:
-    linear-gradient(
-    135deg,
-    #FF6A88,
-    #FF99AC
-    );
+.stats-card h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.stats-card h2 {
+    font-size: 36px;
+    font-weight: 800;
+    color: #FFFFFF;
+    margin: 0 0 8px;
+    letter-spacing: -0.03em;
+}
+
+.stats-card p {
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.stats-icon {
+    position: absolute;
+    right: 18px;
+    bottom: 12px;
+    font-size: 68px;
+    color: #FFFFFF;
+    opacity: 0.18;
+    pointer-events: none;
+    transition: var(--transition-normal);
+}
+
+.stats-card:hover .stats-icon {
+    opacity: 0.28;
+    transform: scale(1.08) rotate(-4deg);
+}
+
+/* Gradients for stats cards */
+.gradient-purple {
+    background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+}
+
+.gradient-green {
+    background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+}
+
+.gradient-orange {
+    background: linear-gradient(135deg, #D97706 0%, #F59E0B 100%);
+}
+
+.gradient-red {
+    background: linear-gradient(135deg, #E11D48 0%, #F43F5E 100%);
+}
+
+.gradient-blue {
+    background: linear-gradient(135deg, #0284C7 0%, #38BDF8 100%);
 }

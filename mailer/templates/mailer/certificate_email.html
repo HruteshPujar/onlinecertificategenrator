@@ -1,102 +1,123 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
-<meta charset="UTF-8">
-
-<title>Certificate</title>
-
-<style>
-
-body{
-    font-family:Arial,sans-serif;
-    background:#f4f4f4;
-    margin:0;
-    padding:30px;
-}
-
-.container{
-    max-width:700px;
-    margin:auto;
-    background:white;
-    border-radius:10px;
-    padding:40px;
-    box-shadow:0 0 10px rgba(0,0,0,.2);
-}
-
-h1{
-    color:#0d6efd;
-}
-
-p{
-    font-size:17px;
-    line-height:1.8;
-}
-
-.footer{
-    margin-top:40px;
-    color:gray;
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Participation</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #F8FAFC;
+            color: #0F172A;
+            margin: 0;
+            padding: 30px 15px;
+            line-height: 1.6;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #E2E8F0;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+        .email-header {
+            background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+            color: #FFFFFF;
+            padding: 36px 30px;
+            text-align: center;
+        }
+        .email-header h1 {
+            margin: 0 0 8px;
+            font-size: 24px;
+            font-weight: 800;
+        }
+        .email-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .email-body {
+            padding: 36px 30px;
+        }
+        .greeting {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 16px;
+        }
+        .event-card {
+            background: #F1F5F9;
+            border-left: 4px solid #4F46E5;
+            padding: 16px 20px;
+            border-radius: 0 10px 10px 0;
+            margin: 20px 0;
+        }
+        .event-card h3 {
+            margin: 0 0 4px;
+            font-size: 16px;
+            color: #4F46E5;
+        }
+        .event-card p {
+            margin: 0;
+            font-size: 13px;
+            color: #64748B;
+        }
+        .attachment-box {
+            background: #ECFDF5;
+            border: 1px dashed #10B981;
+            padding: 14px 18px;
+            border-radius: 10px;
+            margin: 24px 0;
+            display: flex;
+            align-items: center;
+            color: #065F46;
+            font-size: 14px;
+        }
+        .email-footer {
+            background: #F8FAFC;
+            padding: 20px 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #94A3B8;
+            border-top: 1px solid #E2E8F0;
+        }
+    </style>
 </head>
-
 <body>
+    <div class="email-wrapper">
+        <div class="email-header">
+            <h1>🎓 Certificate of Participation</h1>
+            <p>Online Certificate Management System</p>
+        </div>
 
-<div class="container">
+        <div class="email-body">
+            <div class="greeting">Dear {{ participant.full_name }},</div>
 
-<h1>🎉 Certificate of Participation</h1>
+            <p>Congratulations! We are pleased to award you this Certificate of Participation for your active involvement in:</p>
 
-<p>
+            <div class="event-card">
+                <h3>{{ participant.event.title }}</h3>
+                <p>Date: {{ participant.event.event_date|date:"F d, Y" }}{% if participant.event.venue %} &bull; Venue: {{ participant.event.venue }}{% endif %}</p>
+            </div>
 
-Hello <strong>{{ participant.full_name }}</strong>,
+            <div class="attachment-box">
+                📎 <strong>Your official PDF certificate has been attached to this email.</strong>
+            </div>
 
-</p>
+            <p>You can download, save, or print your verified certificate. It contains a unique verification QR code for official authenticity checks.</p>
 
-<p>
+            <p style="margin-top: 28px; margin-bottom: 0;">
+                Best regards,<br>
+                <strong>Event Organizing Committee</strong>
+            </p>
+        </div>
 
-Congratulations!
-
-</p>
-
-<p>
-
-Thank you for participating in
-
-<strong>
-
-{{ participant.event.title }}
-
-</strong>
-
-</p>
-
-<p>
-
-Your certificate has been attached with this email.
-
-</p>
-
-<p>
-
-We appreciate your participation.
-
-</p>
-
-<div class="footer">
-
-Regards,
-
-<br>
-
-Training Team
-
-</div>
-
-</div>
-
+        <div class="email-footer">
+            Sent via <strong>Online Certificate Management System (OCMS)</strong><br>
+            Please do not reply directly to this automated email.
+        </div>
+    </div>
 </body>
-
 </html>

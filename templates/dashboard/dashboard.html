@@ -1,6 +1,6 @@
 {% extends "dashboard/dashboard_base.html" %}
 
-{% block title %}Dashboard - OCMS{% endblock %}
+{% block title %}Dashboard - OCMS Studio{% endblock %}
 
 {% block dashboard_content %}
 
@@ -9,62 +9,46 @@
 ========================== -->
 <div class="row g-4 mb-4">
     <div class="col-xl-3 col-lg-6 col-md-6">
-        <a href="{% url 'event_list' %}" class="text-decoration-none">
-            <div class="stats-card gradient-purple">
-                <div class="stats-content">
-                    <h5>Total Events</h5>
-                    <h2>{{ total_events }}</h2>
-                    <p><i class="bi bi-calendar-check me-1"></i> Manage events</p>
-                </div>
-                <div class="stats-icon">
-                    <i class="bi bi-calendar-event"></i>
-                </div>
+        <a href="{% url 'event_list' %}" class="stats-card gradient-purple">
+            <div class="stats-content">
+                <h5>Total Events</h5>
+                <h2>{{ total_events }}</h2>
+                <p><i class="bi bi-calendar2-check"></i> Manage events & templates</p>
             </div>
+            <i class="bi bi-calendar-event stats-icon"></i>
         </a>
     </div>
 
     <div class="col-xl-3 col-lg-6 col-md-6">
-        <a href="{% url 'participant_list' %}" class="text-decoration-none">
-            <div class="stats-card gradient-green">
-                <div class="stats-content">
-                    <h5>Total Participants</h5>
-                    <h2>{{ total_participants }}</h2>
-                    <p><i class="bi bi-person-check me-1"></i> Registered attendees</p>
-                </div>
-                <div class="stats-icon">
-                    <i class="bi bi-people-fill"></i>
-                </div>
+        <a href="{% url 'participant_list' %}" class="stats-card gradient-green">
+            <div class="stats-content">
+                <h5>Total Participants</h5>
+                <h2>{{ total_participants }}</h2>
+                <p><i class="bi bi-people"></i> Registered attendees</p>
             </div>
+            <i class="bi bi-people-fill stats-icon"></i>
         </a>
     </div>
 
     <div class="col-xl-3 col-lg-6 col-md-6">
-        <a href="{% url 'certificate_list' %}" class="text-decoration-none">
-            <div class="stats-card gradient-orange">
-                <div class="stats-content">
-                    <h5>Certificates Generated</h5>
-                    <h2>{{ total_certificates }}</h2>
-                    <p><i class="bi bi-award me-1"></i> {{ pending }} pending</p>
-                </div>
-                <div class="stats-icon">
-                    <i class="bi bi-award-fill"></i>
-                </div>
+        <a href="{% url 'certificate_list' %}" class="stats-card gradient-orange">
+            <div class="stats-content">
+                <h5>Certificates Built</h5>
+                <h2>{{ total_certificates }}</h2>
+                <p><i class="bi bi-hourglass-split"></i> {{ pending }} pending generation</p>
             </div>
+            <i class="bi bi-award-fill stats-icon"></i>
         </a>
     </div>
 
     <div class="col-xl-3 col-lg-6 col-md-6">
-        <a href="{% url 'reports_dashboard' %}" class="text-decoration-none">
-            <div class="stats-card gradient-red">
-                <div class="stats-content">
-                    <h5>Emails Dispatched</h5>
-                    <h2>{{ total_emails }}</h2>
-                    <p><i class="bi bi-envelope-check me-1"></i> Sent successfully</p>
-                </div>
-                <div class="stats-icon">
-                    <i class="bi bi-envelope-fill"></i>
-                </div>
+        <a href="{% url 'reports_dashboard' %}" class="stats-card gradient-red">
+            <div class="stats-content">
+                <h5>Emails Dispatched</h5>
+                <h2>{{ total_emails }}</h2>
+                <p><i class="bi bi-send-check"></i> Delivered to inboxes</p>
             </div>
+            <i class="bi bi-envelope-fill stats-icon"></i>
         </a>
     </div>
 </div>
@@ -72,29 +56,29 @@
 <!-- =========================
      2. Quick Action Shortcuts
 ========================== -->
-<div class="dashboard-card quick-actions-card mb-4">
+<div class="dashboard-card mb-4">
     <div class="dashboard-card-header">
         <div>
-            <h5>⚡ Quick Actions</h5>
-            <p>Common tasks and operations</p>
+            <h5><i class="bi bi-lightning-charge-fill text-warning"></i> Quick Operations</h5>
+            <p>Frequently used shortcuts and actions</p>
         </div>
     </div>
     <div class="quick-actions">
         <a href="{% url 'add_event' %}" class="quick-action purple-action">
             <i class="bi bi-calendar-plus"></i>
-            <span>Create Event</span>
+            <span>Create New Event</span>
         </a>
         <a href="{% url 'add_participant' %}" class="quick-action green-action">
             <i class="bi bi-person-plus"></i>
-            <span>Add Participant</span>
+            <span>Add Attendee</span>
         </a>
         <a href="{% url 'import_participants' %}" class="quick-action orange-action">
-            <i class="bi bi-file-earmark-spreadsheet"></i>
-            <span>Import Excel / CSV</span>
+            <i class="bi bi-file-earmark-arrow-up"></i>
+            <span>Import CSV / Excel</span>
         </a>
         <a href="{% url 'reports_dashboard' %}" class="quick-action red-action">
             <i class="bi bi-graph-up-arrow"></i>
-            <span>Analytics & Export</span>
+            <span>View Analytics</span>
         </a>
     </div>
 </div>
@@ -107,13 +91,13 @@
         <div class="dashboard-card h-100">
             <div class="dashboard-card-header">
                 <div>
-                    <h5>📊 Event Participation</h5>
-                    <p>Number of registered attendees per event</p>
+                    <h5><i class="bi bi-bar-chart-fill text-primary"></i> Event Participation</h5>
+                    <p>Attendees registered per event</p>
                 </div>
-                <a href="{% url 'event_list' %}" class="view-all">View All Events →</a>
+                <a href="{% url 'event_list' %}" class="view-all">All Events <i class="bi bi-arrow-right"></i></a>
             </div>
-            <div class="chart-container" style="position: relative; height: 300px;">
-                <canvas id="eventChart"></canvas>
+            <div class="chart-container">
+                <canvas id="eventChart" style="max-height: 280px;"></canvas>
             </div>
         </div>
     </div>
@@ -122,13 +106,13 @@
         <div class="dashboard-card h-100">
             <div class="dashboard-card-header">
                 <div>
-                    <h5>🎯 Certificate Status</h5>
+                    <h5><i class="bi bi-pie-chart-fill text-success"></i> Certificate Status</h5>
                     <p>Generated vs Pending Certificates</p>
                 </div>
-                <a href="{% url 'certificate_list' %}" class="view-all">Certificates →</a>
+                <a href="{% url 'certificate_list' %}" class="view-all">Repository <i class="bi bi-arrow-right"></i></a>
             </div>
-            <div class="chart-container chart-small" style="position: relative; height: 300px;">
-                <canvas id="certificateChart"></canvas>
+            <div class="chart-container">
+                <canvas id="certificateChart" style="max-height: 280px;"></canvas>
             </div>
         </div>
     </div>
@@ -143,19 +127,18 @@
         <div class="dashboard-card h-100">
             <div class="dashboard-card-header">
                 <div>
-                    <h5>📅 Recent Events</h5>
-                    <p>Latest active events</p>
+                    <h5><i class="bi bi-calendar3 text-primary"></i> Recent Events</h5>
+                    <p>Latest registered events</p>
                 </div>
-                <a href="{% url 'event_list' %}" class="view-all">All Events →</a>
+                <a href="{% url 'event_list' %}" class="view-all">View All <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="table-responsive">
                 <table class="dashboard-table">
                     <thead>
                         <tr>
-                            <th>Event Name</th>
-                            <th>Date</th>
-                            <th>Venue</th>
-                            <th>Action</th>
+                            <th>Event Details</th>
+                            <th>Date & Venue</th>
+                            <th class="text-end">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -164,24 +147,33 @@
                             <td>
                                 <div class="table-title">
                                     <div class="mini-icon purple-bg">
-                                        <i class="bi bi-calendar-event"></i>
+                                        <i class="bi bi-calendar2-event"></i>
                                     </div>
                                     <div>
-                                        <strong>{{ event.title }}</strong>
+                                        <strong class="d-block text-dark">{{ event.title }}</strong>
+                                        <span class="text-muted small">{{ event.participants.count }} attendees</span>
                                     </div>
                                 </div>
                             </td>
-                            <td>{{ event.event_date|date:"M d, Y" }}</td>
-                            <td><span class="text-muted">{{ event.venue }}</span></td>
                             <td>
-                                <a href="{% url 'participant_list' %}?event={{ event.id }}" class="btn btn-sm btn-outline-primary py-1 px-2" title="View Attendees">
+                                <div class="small fw-semibold">{{ event.event_date|date:"M d, Y" }}</div>
+                                <div class="text-muted small"><i class="bi bi-geo-alt"></i> {{ event.venue|truncatechars:18 }}</div>
+                            </td>
+                            <td class="text-end">
+                                <a href="{% url 'participant_list' %}?event={{ event.id }}" class="action-icon-btn" title="View Attendees">
                                     <i class="bi bi-people"></i>
+                                </a>
+                                <a href="{% url 'edit_event' event.id %}" class="action-icon-btn" title="Edit Event">
+                                    <i class="bi bi-pencil"></i>
                                 </a>
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="4" class="empty-state">No events found. <a href="{% url 'add_event' %}">Create one!</a></td>
+                            <td colspan="3" class="empty-state">
+                                <i class="bi bi-calendar-x"></i>
+                                <div>No events found. <a href="{% url 'add_event' %}">Create one now</a>!</div>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -195,19 +187,18 @@
         <div class="dashboard-card h-100">
             <div class="dashboard-card-header">
                 <div>
-                    <h5>👥 Recent Participants</h5>
-                    <p>Latest registrations</p>
+                    <h5><i class="bi bi-people text-primary"></i> Recent Attendees</h5>
+                    <p>Latest registered participants</p>
                 </div>
-                <a href="{% url 'participant_list' %}" class="view-all">All Participants →</a>
+                <a href="{% url 'participant_list' %}" class="view-all">View All <i class="bi bi-arrow-right"></i></a>
             </div>
             <div class="table-responsive">
                 <table class="dashboard-table">
                     <thead>
                         <tr>
-                            <th>Participant</th>
-                            <th>Event</th>
-                            <th>Cert Status</th>
-                            <th>Action</th>
+                            <th>Attendee</th>
+                            <th>Status</th>
+                            <th class="text-end">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -219,12 +210,11 @@
                                         {{ participant.full_name|slice:":1"|upper }}
                                     </div>
                                     <div>
-                                        <strong>{{ participant.full_name }}</strong>
-                                        <div class="text-muted" style="font-size: 11px;">{{ participant.email }}</div>
+                                        <strong class="d-block text-dark">{{ participant.full_name }}</strong>
+                                        <span class="text-muted small">{{ participant.event.title|truncatechars:20 }}</span>
                                     </div>
                                 </div>
                             </td>
-                            <td><span class="text-muted">{{ participant.event.title|truncatechars:18 }}</span></td>
                             <td>
                                 {% if participant.certificate_generated %}
                                     <span class="badge badge-success">Generated</span>
@@ -232,21 +222,24 @@
                                     <span class="badge badge-warning">Pending</span>
                                 {% endif %}
                             </td>
-                            <td>
+                            <td class="text-end">
                                 {% if participant.certificate_generated %}
-                                    <a href="{% url 'preview_certificate' participant.id %}" class="btn btn-sm btn-outline-primary py-1 px-2" title="Preview">
+                                    <a href="{% url 'preview_certificate' participant.id %}" class="action-icon-btn text-primary" title="Preview Certificate">
                                         <i class="bi bi-eye"></i>
                                     </a>
                                 {% else %}
                                     <a href="{% url 'generate_certificate' participant.id %}" class="btn btn-sm btn-success py-1 px-2" title="Generate Now">
-                                        <i class="bi bi-magic"></i>
+                                        <i class="bi bi-magic"></i> Build
                                     </a>
                                 {% endif %}
                             </td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="4" class="empty-state">No participants registered yet. <a href="{% url 'add_participant' %}">Add one!</a></td>
+                            <td colspan="3" class="empty-state">
+                                <i class="bi bi-person-x"></i>
+                                <div>No participants registered yet. <a href="{% url 'add_participant' %}">Add one</a>!</div>
+                            </td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -256,9 +249,7 @@
     </div>
 </div>
 
-<!-- =========================
-     5. Chart Scripts
-========================== -->
+<!-- Chart Data Scripts -->
 {{ event_labels|json_script:"event-labels-data" }}
 {{ event_counts|json_script:"event-counts-data" }}
 {{ generated|json_script:"generated-data" }}
@@ -266,6 +257,10 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    // Fonts & defaults for Chart.js
+    Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
+    Chart.defaults.color = "#64748B";
+
     const eventLabelsEl = document.getElementById("event-labels-data");
     const eventCountsEl = document.getElementById("event-counts-data");
     const generatedEl = document.getElementById("generated-data");
@@ -276,7 +271,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const generated = generatedEl ? JSON.parse(generatedEl.textContent) : 0;
     const pending = pendingEl ? JSON.parse(pendingEl.textContent) : 0;
 
-    // 1. Participants Chart
+    // 1. Event Chart
     const eventCanvas = document.getElementById("eventChart");
     if (eventCanvas && eventLabels.length > 0) {
         new Chart(eventCanvas, {
@@ -286,10 +281,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 datasets: [{
                     label: "Participants",
                     data: eventCounts,
-                    backgroundColor: "#6C63FF",
+                    backgroundColor: "#4F46E5",
                     borderRadius: 8,
                     borderSkipped: false,
-                    barThickness: 28,
+                    barThickness: 26,
                 }]
             },
             options: {
@@ -298,15 +293,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: "#1B2A4A",
-                        padding: 10,
+                        backgroundColor: "#0F172A",
+                        padding: 12,
                         cornerRadius: 8,
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        grid: { color: "rgba(0, 0, 0, 0.05)" },
+                        grid: { color: "rgba(226, 232, 240, 0.6)" },
                         ticks: { precision: 0 }
                     },
                     x: {
@@ -317,16 +312,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // 2. Certificate Chart
+    // 2. Certificate Doughnut Chart
     const certificateCanvas = document.getElementById("certificateChart");
     if (certificateCanvas) {
+        const total = generated + pending;
         new Chart(certificateCanvas, {
             type: "doughnut",
             data: {
                 labels: ["Generated", "Pending"],
                 datasets: [{
-                    data: [generated, pending],
-                    backgroundColor: ["#2ECC71", "#FFB547"],
+                    data: total === 0 ? [1, 0] : [generated, pending],
+                    backgroundColor: total === 0 ? ["#E2E8F0", "#CBD5E1"] : ["#10B981", "#F59E0B"],
                     borderWidth: 0,
                     hoverOffset: 6,
                 }]
@@ -334,11 +330,11 @@ document.addEventListener("DOMContentLoaded", function () {
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
-                cutout: "70%",
+                cutout: "75%",
                 plugins: {
                     legend: {
                         position: "bottom",
-                        labels: { padding: 15, font: { family: "Poppins", size: 12 } }
+                        labels: { padding: 16, boxWidth: 12, font: { weight: 600 } }
                     }
                 }
             }
@@ -347,4 +343,4 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-{% endblock %}
+{% endblock %}

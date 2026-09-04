@@ -1,382 +1,243 @@
-
 /* ==========================================
-   OCMS SIDEBAR OVERRIDE
+   OCMS MODERN SIDEBAR STYLES
 ========================================== */
 
-.ocms-sidebar .sidebar {
-
-    position: relative !important;
-
-    top: auto !important;
-
-    left: auto !important;
-
-    right: auto !important;
-
-    bottom: auto !important;
-
-    width: 270px !important;
-
-    min-height: calc(100vh - 40px) !important;
-
-    height: auto !important;
-
-    margin: 0 !important;
-
-    z-index: 20 !important;
-
-}
-
-
-/* ==========================================
-   SIDEBAR
-========================================== */
-/* ==========================================
-   SIDEBAR
-========================================== */
-
-.ocms-sidebar-wrapper {
-
-    padding: 20px;
-
-    min-height: 100vh;
-
-}
-
-
-/* ==========================================
-   SIDEBAR BOX
-========================================== */
-
-.ocms-sidebar-wrapper .sidebar {
-
-    width: 100%;
-
-    min-height: calc(100vh - 40px);
-
-    padding: 25px;
-
-    background: rgba(255, 255, 255, 0.75);
-
-    backdrop-filter: blur(18px);
-
-    -webkit-backdrop-filter: blur(18px);
-
-    border-radius: 25px;
-
-    border: 1px solid rgba(255,255,255,.7);
-
-    box-shadow:
-
-        8px 8px 20px rgba(163,177,198,.45),
-
-        -8px -8px 20px rgba(255,255,255,.9);
-
-}
-
-
-/* ==========================================
-   LOGO
-========================================== */
-
-.logo {
-
-    text-align: center;
-
-    margin-bottom: 35px;
-
-}
-
-.logo h2 {
-
-    color: #6C63FF;
-
-    font-weight: 700;
-
-    font-size: 28px;
-
-}
-
-.logo p {
-
-    color: #7B8794;
-
-    font-size: 13px;
-
-    margin-top: 5px;
-
-}
-
-
-/* ==========================================
-   MENU
-========================================== */
-
-.sidebar ul {
-
-    list-style: none;
-
-    padding: 0;
-
-    margin: 0;
-
-}
-
-.sidebar li {
-
-    margin-bottom: 8px;
-
-}
-
-.sidebar a {
-
+.ocms-sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: #FFFFFF;
+    border-right: 1px solid var(--border-color);
     display: flex;
-
-    align-items: center;
-
-    gap: 14px;
-
-    padding: 13px 15px;
-
-    color: #4A5568;
-
-    text-decoration: none;
-
-    border-radius: 14px;
-
-    transition: .3s;
-
+    flex-direction: column;
+    z-index: 1000;
+    transition: transform var(--transition-normal);
+    box-shadow: var(--shadow-sm);
 }
 
-.sidebar a:hover {
-
-    background: #6C63FF;
-
-    color: white;
-
-    transform: translateX(4px);
-
-}
-
-.sidebar a i {
-
-    width: 22px;
-
-    text-align: center;
-
-    font-size: 18px;
-
-}
-
-
-/* ==========================================
-   LOGOUT
-========================================== */
-
-.sidebar .logout {
-
-    margin-top: 25px;
-
-    color: #FF6B6B;
-
-}
-
-.sidebar .logout:hover {
-
-    background: #FF6B6B;
-
-    color: white;
-
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 991px) {
-
-    .ocms-sidebar-wrapper {
-
-        padding: 15px;
-
-    }
-
-    .ocms-sidebar-wrapper .sidebar {
-
-        min-height: auto;
-
-    }
-
-}
-
-
-/* ==========================================
-   LOGO
-========================================== */
-
-.logo {
-
-    text-align: center;
-
-    margin-bottom: 35px;
-
-}
-
-.logo h2 {
-
-    color: #6C63FF;
-
-    font-weight: 700;
-
-    font-size: 28px;
-
-}
-
-.logo p {
-
-    color: #7B8794;
-
-    font-size: 13px;
-
-    margin-top: 5px;
-
-}
-
-
-/* ==========================================
-   NAVIGATION
-========================================== */
-
-.sidebar ul {
-
-    list-style: none;
-
-    padding: 0;
-
-    margin: 0;
-
-}
-
-.sidebar li {
-
-    margin-bottom: 8px;
-
-}
-
-.sidebar a {
-
+/* Sidebar Header / Logo */
+.ocms-sidebar-header {
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border-color-light);
     display: flex;
-
     align-items: center;
+    justify-content: space-between;
+}
 
-    gap: 14px;
-
-    padding: 13px 15px;
-
-    color: #4A5568;
-
+.ocms-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     text-decoration: none;
-
-    border-radius: 14px;
-
-    transition: all .3s ease;
-
-    font-size: 15px;
-
 }
 
-.sidebar a i {
+.ocms-brand-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--primary-gradient);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+}
 
+.ocms-brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.ocms-brand-title {
     font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--text-main);
+    line-height: 1.2;
+}
 
+.ocms-brand-subtitle {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.sidebar-close-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: var(--radius-xs);
+}
+
+.sidebar-close-btn:hover {
+    color: var(--danger);
+    background: var(--danger-light);
+}
+
+/* Sidebar Navigation */
+.ocms-sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-light);
+    padding: 10px 12px 6px;
+    margin-top: 6px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 13.5px;
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.sidebar-link i {
+    font-size: 18px;
     width: 22px;
-
     text-align: center;
-
+    color: var(--text-light);
+    transition: var(--transition-fast);
 }
 
-.sidebar a:hover {
+.sidebar-link:hover {
+    color: var(--primary);
+    background-color: var(--primary-light);
+}
 
-    background: #6C63FF;
+.sidebar-link:hover i {
+    color: var(--primary);
+}
 
+/* Active Link */
+.sidebar-link.active {
+    background: var(--primary);
+    color: #FFFFFF;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
+}
+
+.sidebar-link.active i {
+    color: #FFFFFF;
+}
+
+/* Sidebar Footer / User Profile */
+.ocms-sidebar-footer {
+    padding: 16px 14px;
+    border-top: 1px solid var(--border-color-light);
+    background: #FAFAFA;
+}
+
+.sidebar-user-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+}
+
+.sidebar-user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.sidebar-user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-full);
+    background: var(--primary-gradient);
     color: white;
-
-    transform: translateX(5px);
-
-    box-shadow:
-        4px 4px 10px rgba(108,99,255,.25);
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
 }
 
+.sidebar-user-meta {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
 
-/* ==========================================
-   ACTIVE MENU
-========================================== */
+.sidebar-user-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-main);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-.sidebar a.active {
+.sidebar-user-role {
+    font-size: 11px;
+    color: var(--text-muted);
+}
 
-    background: #6C63FF;
+.sidebar-logout-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--danger);
+    background: var(--danger-light);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    flex-shrink: 0;
+}
 
+.sidebar-logout-btn:hover {
+    background: var(--danger);
     color: white;
-
 }
 
-
-/* ==========================================
-   LOGOUT
-========================================== */
-
-.sidebar .logout {
-
-    margin-top: 25px;
-
-    color: #FF6B6B;
-
-}
-
-.sidebar .logout:hover {
-
-    background: #FF6B6B;
-
-    color: white;
-
-}
-
-
-/* ==========================================
-   TABLET
-========================================== */
-
-@media (max-width: 992px) {
-
-    .sidebar {
-
-        width: 230px;
-
-        padding: 20px;
-
-    }
-
-}
-
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 768px) {
-
-    .sidebar {
-
-        position: relative;
-
+/* Mobile Responsiveness */
+@media (max-width: 991.98px) {
+    .ocms-sidebar {
+        position: fixed;
         top: 0;
-
-        width: 100%;
-
-        min-height: auto;
-
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        box-shadow: var(--shadow-xl);
     }
 
+    .ocms-sidebar.open {
+        transform: translateX(0);
+    }
+
+    .sidebar-close-btn {
+        display: block;
+    }
 }

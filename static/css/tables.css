@@ -1,29 +1,101 @@
-.table{
+/* ==========================================
+   OCMS MODERN TABLE STYLES
+========================================== */
 
-    border-radius:20px;
-
-    overflow:hidden;
-
-    background:white;
-
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
-.table thead{
-
-    background:#6C63FF;
-
-    color:white;
-
+.dashboard-table,
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 0;
+    vertical-align: middle;
 }
 
-.table tbody tr{
-
-    transition:.3s;
-
+.dashboard-table th,
+.table th {
+    padding: 14px 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    background-color: var(--bg-surface-subtle);
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
 }
 
-.table tbody tr:hover{
+.dashboard-table td,
+.table td {
+    padding: 14px 20px;
+    font-size: 13.5px;
+    color: var(--text-main);
+    border-bottom: 1px solid var(--border-color-light);
+    vertical-align: middle;
+}
 
-    background:#F4F6FF;
+.dashboard-table tbody tr,
+.table tbody tr {
+    transition: var(--transition-fast);
+}
 
+.dashboard-table tbody tr:hover,
+.table tbody tr:hover {
+    background-color: #F8FAFC;
+}
+
+.dashboard-table tbody tr:last-child td,
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    list-style: none;
+    padding: 0;
+    margin: 24px 0 0;
+}
+
+.page-item .page-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    background: #FFFFFF;
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    min-width: 38px;
+    height: 38px;
+}
+
+.page-item .page-link:hover {
+    background: var(--bg-surface-subtle);
+    border-color: #CBD5E1;
+    color: var(--primary);
+}
+
+.page-item.active .page-link {
+    background: var(--primary);
+    color: #FFFFFF;
+    border-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(79, 70, 229, 0.25);
+}
+
+.page-item.disabled .page-link {
+    color: var(--text-light);
+    pointer-events: none;
+    background: var(--bg-surface-subtle);
+    border-color: var(--border-color-light);
 }

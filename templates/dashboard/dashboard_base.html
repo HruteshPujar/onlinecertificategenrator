@@ -1,45 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="ocms-app-layout">
+    <!-- Mobile Backdrop -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
-<div class="container-fluid px-0">
+    <!-- Sidebar -->
+    {% include "components/sidebar.html" %}
 
-    <div class="row g-0">
+    <!-- Main Wrapper -->
+    <div class="ocms-main-wrapper">
+        <!-- Top Navbar -->
+        {% include "components/navbar.html" %}
 
-        <!-- ================= SIDEBAR ================= -->
-
-        <div class="col-lg-2">
-
-            <div class="ocms-sidebar-wrapper">
-
-                {% include "components/sidebar.html" %}
-
-            </div>
-
-        </div>
-
-
-        <!-- ================= MAIN CONTENT ================= -->
-
-        <div class="col-lg-10">
-
-            <main class="ocms-main">
-
-                {% include "components/navbar.html" %}
-
-                <div class="ocms-content">
-
-                    {% block dashboard_content %}
-                    {% endblock %}
-
-                </div>
-
-            </main>
-
-        </div>
-
+        <!-- Content Container -->
+        <main class="ocms-content animate-fade-in">
+            {% block dashboard_content %}
+            {% endblock %}
+        </main>
     </div>
-
 </div>
-
 {% endblock %}

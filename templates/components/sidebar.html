@@ -1,57 +1,72 @@
-<div class="sidebar">
-    <div class="logo">
-        <h2>🎓 OCMS</h2>
-        <p>Online Certificate System</p>
+<aside class="ocms-sidebar" id="ocmsSidebar">
+    <!-- Brand Header -->
+    <div class="ocms-sidebar-header">
+        <a href="{% url 'dashboard' %}" class="ocms-brand">
+            <div class="ocms-brand-icon">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
+            <div class="ocms-brand-text">
+                <span class="ocms-brand-title">OCMS</span>
+                <span class="ocms-brand-subtitle">Certificate Studio</span>
+            </div>
+        </a>
+        <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">
+            <i class="bi bi-x-lg"></i>
+        </button>
     </div>
 
-    <ul>
-        <li>
-            <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
-            </a>
-        </li>
+    <!-- Navigation Menu -->
+    <nav class="ocms-sidebar-nav">
+        <div class="nav-section-label">Main Menu</div>
+        
+        <a href="{% url 'dashboard' %}" class="sidebar-link {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+        </a>
 
-        <li>
-            <a href="{% url 'event_list' %}" class="{% if request.resolver_match.url_name in 'event_list,add_event,edit_event' %}active{% endif %}">
-                <i class="bi bi-calendar-event"></i>
-                Events
-            </a>
-        </li>
+        <a href="{% url 'event_list' %}" class="sidebar-link {% if request.resolver_match.url_name in 'event_list,add_event,edit_event' %}active{% endif %}">
+            <i class="bi bi-calendar-event-fill"></i>
+            <span>Events</span>
+        </a>
 
-        <li>
-            <a href="{% url 'participant_list' %}" class="{% if request.resolver_match.url_name in 'participant_list,add_participant,edit_participant,preview_certificate' %}active{% endif %}">
-                <i class="bi bi-people-fill"></i>
-                Participants
-            </a>
-        </li>
+        <a href="{% url 'participant_list' %}" class="sidebar-link {% if request.resolver_match.url_name in 'participant_list,add_participant,edit_participant,preview_certificate' %}active{% endif %}">
+            <i class="bi bi-people-fill"></i>
+            <span>Participants</span>
+        </a>
 
-        <li>
-            <a href="{% url 'certificate_list' %}" class="{% if request.resolver_match.url_name == 'certificate_list' %}active{% endif %}">
-                <i class="bi bi-award-fill"></i>
-                Certificates
-            </a>
-        </li>
+        <a href="{% url 'certificate_list' %}" class="sidebar-link {% if request.resolver_match.url_name == 'certificate_list' %}active{% endif %}">
+            <i class="bi bi-award-fill"></i>
+            <span>Certificates</span>
+        </a>
 
-        <li>
-            <a href="{% url 'import_participants' %}" class="{% if request.resolver_match.url_name == 'import_participants' %}active{% endif %}">
-                <i class="bi bi-upload"></i>
-                Import Excel / CSV
-            </a>
-        </li>
+        <div class="nav-section-label">Operations</div>
 
-        <li>
-            <a href="{% url 'reports_dashboard' %}" class="{% if request.resolver_match.url_name in 'reports_dashboard,export_participants_csv' %}active{% endif %}">
-                <i class="bi bi-bar-chart-fill"></i>
-                Reports & Analytics
-            </a>
-        </li>
+        <a href="{% url 'import_participants' %}" class="sidebar-link {% if request.resolver_match.url_name in 'import_participants,preview_excel' %}active{% endif %}">
+            <i class="bi bi-file-earmark-spreadsheet-fill"></i>
+            <span>Import CSV / Excel</span>
+        </a>
 
-        <li>
-            <a href="{% url 'logout' %}" class="logout">
+        <a href="{% url 'reports_dashboard' %}" class="sidebar-link {% if request.resolver_match.url_name in 'reports_dashboard,export_participants_csv' %}active{% endif %}">
+            <i class="bi bi-bar-chart-line-fill"></i>
+            <span>Reports & Analytics</span>
+        </a>
+    </nav>
+
+    <!-- Sidebar Footer / User Profile -->
+    <div class="ocms-sidebar-footer">
+        <div class="sidebar-user-card">
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-avatar">
+                    {{ request.user.username|default:"A"|slice:":1"|upper }}
+                </div>
+                <div class="sidebar-user-meta">
+                    <span class="sidebar-user-name">{{ request.user.username|default:"Admin User" }}</span>
+                    <span class="sidebar-user-role">Administrator</span>
+                </div>
+            </div>
+            <a href="{% url 'logout' %}" class="sidebar-logout-btn" title="Sign Out">
                 <i class="bi bi-box-arrow-right"></i>
-                Logout
             </a>
-        </li>
-    </ul>
-</div>
+        </div>
+    </div>
+</aside>

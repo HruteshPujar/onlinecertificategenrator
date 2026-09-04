@@ -154,14 +154,29 @@ def send_single_email_view(request, pk):
 
     try:
         send_participant_email_service(participant)
-        messages.success(request, f"Certificate email sent to {participant.email} successfully!")
+        if "console" in getattr(settings, "EMAIL_BACKEND", ""):
+            messages.info(
+                request,
+                f"Email for {participant.email} generated & logged to server console. (To deliver to actual inboxes, add your Gmail App Password to .env)"
+            )
+        else:
+            messages.success(request, f"Certificate PDF dispatched to {participant.email} successfully!")
     except Exception as e:
-        messages.error(request, f"Failed to send email to {participant.email}: {e}")
+        error_msg = str(e)
+        if any(term in error_msg for term in ["Authentication Required", "Username and Password not accepted", "530", "535", "BadCredentials"]):
+            messages.error(
+                request,
+                "Email dispatch failed: Gmail SMTP Authentication rejected. Google requires a 16-character Google App Password (not your regular Gmail password). Please generate one at https://myaccount.google.com/apppasswords and update EMAIL_HOST_PASSWORD in your .env file."
+            )
+        else:
+            messages.error(request, f"Failed to dispatch email to {participant.email}: {e}")
 
     next_url = request.GET.get("next") or request.META.get("HTTP_REFERER")
     if next_url and next_url.startswith("/"):
         return redirect(next_url)
     return redirect("participant_list")
+
+
 
 
 @login_required

@@ -1,350 +1,74 @@
+/* ==========================================
+   OCMS CORE & UTILITIES
+========================================== */
 
-
-
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-/* ==============================
-        Global
-================================ */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
+/* Glass Panel Utility */
+.glass-panel {
+    background: var(--bg-surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-glass);
 }
 
-body{
-
-    background:#EEF2F9;
-
-    color:#444;
-
+/* Rounded Utilities */
+.rounded-xl {
+    border-radius: var(--radius-xl) !important;
 }
 
-/* ==============================
-        Sidebar
-================================ */
-
-.sidebar{
-
-    min-height:100vh;
-
-    background:#EEF2F9;
-
-    box-shadow:
-    8px 8px 18px #d1d9e6,
-    -8px -8px 18px #ffffff;
-
-    border-radius:20px;
-
-    padding:25px;
-
+.rounded-lg {
+    border-radius: var(--radius-lg) !important;
 }
 
-.sidebar h3{
-
-    color:#6C63FF;
-
-    font-weight:700;
-
+.rounded-md {
+    border-radius: var(--radius-md) !important;
 }
 
-.sidebar p{
-
-    color:#888;
-
-    font-size:14px;
-
+/* Text Accent Utilities */
+.text-gradient-primary {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.sidebar .nav-link{
-
-    margin:12px 0;
-
-    padding:14px;
-
-    border-radius:12px;
-
-    color:#555;
-
-    transition:.3s;
-
+.text-gradient-secondary {
+    background: var(--secondary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-.sidebar .nav-link:hover{
-
-    background:#6C63FF;
-
-    color:white !important;
-
-    transform:translateX(5px);
-
+/* Badge Utilities */
+.badge-soft-primary {
+    background-color: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
 }
 
-.sidebar .active{
-
-    background:#6C63FF;
-
-    color:white !important;
-
+.badge-soft-success {
+    background-color: var(--success-light);
+    color: var(--success);
+    font-weight: 600;
 }
 
-/* ==============================
-        Cards
-================================ */
-
-.card{
-
-    border:none;
-
-    border-radius:20px;
-
-    background:#EEF2F9;
-
-    box-shadow:
-
-    8px 8px 18px #d1d9e6,
-
-    -8px -8px 18px #ffffff;
-
-    transition:.35s;
-
+.badge-soft-warning {
+    background-color: var(--warning-light);
+    color: var(--warning);
+    font-weight: 600;
 }
 
-.card:hover{
-
-    transform:translateY(-8px);
-
+.badge-soft-danger {
+    background-color: var(--danger-light);
+    color: var(--danger);
+    font-weight: 600;
 }
 
-.card-body{
-
-    padding:25px;
-
+/* Transition Utility */
+.hover-lift {
+    transition: var(--transition-normal);
 }
 
-.card h5{
-
-    font-size:18px;
-
-    color:#666;
-
-}
-
-.card h2{
-
-    font-weight:700;
-
-    color:#333;
-
-}
-
-/* ==============================
-        Statistics Colors
-================================ */
-
-.bg-primary{
-
-    background:#6C63FF !important;
-
-}
-
-.bg-success{
-
-    background:#4ECDC4 !important;
-
-}
-
-.bg-warning{
-
-    background:#FFB547 !important;
-
-}
-
-.bg-danger{
-
-    background:#FF6B6B !important;
-
-}
-
-.card.bg-primary,
-.card.bg-success,
-.card.bg-warning,
-.card.bg-danger{
-
-    color:white;
-
-    box-shadow:none;
-
-}
-
-/* ==============================
-        Tables
-================================ */
-
-.table{
-
-    border-radius:15px;
-
-    overflow:hidden;
-
-}
-
-.table thead{
-
-    background:#6C63FF;
-
-    color:white;
-
-}
-
-.table tbody tr{
-
-    transition:.2s;
-
-}
-
-.table tbody tr:hover{
-
-    background:#f5f5ff;
-
-}
-
-/* ==============================
-        Buttons
-================================ */
-
-.btn{
-
-    border-radius:12px;
-
-    border:none;
-
-    padding:10px 18px;
-
-    transition:.3s;
-
-}
-
-.btn-primary{
-
-    background:#6C63FF;
-
-}
-
-.btn-success{
-
-    background:#4ECDC4;
-
-}
-
-.btn-danger{
-
-    background:#FF6B6B;
-
-}
-
-.btn-warning{
-
-    background:#FFB547;
-
-}
-
-.btn:hover{
-
-    transform:translateY(-3px);
-
-}
-
-/* ==============================
-        Form Controls
-================================ */
-
-.form-control,
-.form-select{
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#EEF2F9;
-
-    box-shadow:
-
-    inset 6px 6px 12px #d1d9e6,
-
-    inset -6px -6px 12px #ffffff;
-
-    padding:12px;
-
-}
-
-.form-control:focus{
-
-    box-shadow:
-
-    0 0 0 3px rgba(108,99,255,.2);
-
-}
-
-/* ==============================
-        Charts
-================================ */
-
-canvas{
-
-    max-height:320px;
-
-}
-
-/* ==============================
-        Navbar
-================================ */
-
-.navbar{
-
-    background:#EEF2F9;
-
-    box-shadow:
-
-    8px 8px 18px #d1d9e6,
-
-    -8px -8px 18px #ffffff;
-
-    border-radius:20px;
-
-}
-
-/* ==============================
-        Footer
-================================ */
-
-.footer{
-
-    margin-top:30px;
-
-    color:#888;
-
-    text-align:center;
-
-}
-
-/* ==============================
-        Scrollbar
-================================ */
-
-::-webkit-scrollbar{
-
-    width:10px;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#6C63FF;
-
-    border-radius:20px;
-
+.hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
 }

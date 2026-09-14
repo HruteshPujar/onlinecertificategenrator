@@ -154,16 +154,11 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATIC_ROOT = BASE_DIR / "staticfiles_build" / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-STORAGES = {
-    "default": {
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-    },
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
-    },
-}
+# WhiteNoise Configuration (serves static files dynamically without needing separate build directory)
+WHITENOISE_USE_FINDERS = True
+
 
 # Media files
 IS_VERCEL = bool(os.getenv("VERCEL"))

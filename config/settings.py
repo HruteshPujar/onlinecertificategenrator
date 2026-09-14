@@ -100,13 +100,30 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-        conn_health_checks=True,
-    )
-}
+IS_VERCEL = bool(os.getenv("VERCEL"))
+if IS_VERCEL:
+    default_db_url = f"sqlite:///{Path('/tmp') / 'db.sqlite3'}"
+else:
+    default_db_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+
+database_url = os.getenv("DATABASE_URL", "").strip()
+if database_url:
+    DATABASES = {
+        'default': dj_database_url.parse(
+            database_url,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=default_db_url,
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
+    }
+
 
 
 # Password validation

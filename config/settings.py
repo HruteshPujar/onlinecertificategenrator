@@ -108,21 +108,27 @@ else:
 
 database_url = os.getenv("DATABASE_URL", "").strip()
 if database_url:
+    # Normalize postgres:// to postgresql://
+    if database_url.startswith("postgres://"):
+        database_url = database_url.replace("postgres://", "postgresql://", 1)
+
     DATABASES = {
         'default': dj_database_url.parse(
             database_url,
-            conn_max_age=600,
+            conn_max_age=0 if IS_VERCEL else 600,
             conn_health_checks=True,
+            ssl_require=True if ("localhost" not in database_url and "127.0.0.1" not in database_url) else False,
         )
     }
 else:
     DATABASES = {
         'default': dj_database_url.config(
             default=default_db_url,
-            conn_max_age=600,
+            conn_max_age=0 if IS_VERCEL else 600,
             conn_health_checks=True,
         )
     }
+
 
 
 
